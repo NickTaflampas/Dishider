@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/scoreImages"
+        android:layout_width="84dp"
+        android:layout_height="442dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/scores"
+        app:layout_constraintEnd_toStartOf="@+id/scores"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scores"
+        app:layout_constraintVertical_bias="0.275">
+
+        <ImageView
+            android:id="@+id/fruitImage"
+            android:layout_width="64dp"
+            android:layout_height="68dp"
+            android:contentDescription="An image of an apple"
+            app:srcCompat="@drawable/fruit_image" />
+
+        <ImageView
+            android:id="@+id/vegatableImage"
+            android:layout_width="64dp"
+            android:layout_height="68dp"
+            android:contentDescription="An image of a carrot"
+            app:srcCompat="@drawable/vegetable_image" />
+
+        <ImageView
+            android:id="@+id/proteinImage"
+            android:layout_width="64dp"
+            android:layout_height="68dp"
+            android:contentDescription="An image of heavy protein foods"
+            app:srcCompat="@drawable/protein_image" />
+
+        <ImageView
+            android:id="@+id/sugarImage"
+            android:layout_width="64dp"
+            android:layout_height="68dp"
+            android:contentDescription="An image of sugar"
+            app:srcCompat="@drawable/sugar_image" />
+
+        <ImageView
+            android:id="@+id/carbImage"
+            android:layout_width="64dp"
+            android:layout_height="68dp"
+            android:contentDescription="An image of bread"
+            app:srcCompat="@drawable/carb_image" />
+
+        <ImageView
+            android:id="@+id/fatImage"
+            android:layout_width="64dp"
+            android:layout_height="68dp"
+            android:contentDescription="An image of a fat droplet"
+            app:srcCompat="@drawable/fat_image" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/scores"
+        android:layout_width="300dp"
+        android:layout_height="441dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="208dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ProgressBar
+            android:id="@+id/fruitScore"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="280dp"
+            android:layout_height="70dp"
+            android:max="100"
+            android:progress="3"
+            android:progressTint="#DE2154"
+            android:scaleY="5" />
+
+        <ProgressBar
+            android:id="@+id/vegetableScore"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="280dp"
+            android:layout_height="70dp"
+            android:max="100"
+            android:progress="3"
+            android:progressTint="#86AC55"
+            android:scaleY="5" />
+
+        <ProgressBar
+            android:id="@+id/proteinScore"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="280dp"
+            android:layout_height="70dp"
+            android:max="100"
+            android:progress="3"
+            android:progressTint="#905936"
+            android:scaleY="5" />
+
+        <ProgressBar
+            android:id="@+id/sugarScore"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="280dp"
+            android:layout_height="70dp"
+            android:max="100"
+            android:progress="3"
+            android:progressTint="#70B5DB"
+            android:scaleY="5" />
+
+        <ProgressBar
+            android:id="@+id/carbScore"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="280dp"
+            android:layout_height="70dp"
+            android:max="100"
+            android:progress="3"
+            android:progressTint="#EA9B5E"
+            android:scaleY="5" />
+
+        <ProgressBar
+            android:id="@+id/fatScore"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="280dp"
+            android:layout_height="70dp"
+            android:max="100"
+            android:progress="3"
+            android:progressTint="#959595"
+            android:scaleY="5" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="187dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:scaleX="1.75"
+        android:scaleY="1.75"
+        android:text="@string/nutrients_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/foodButton"
+        android:layout_width="186dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="92dp"
+        android:text="@string/food_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scores"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
