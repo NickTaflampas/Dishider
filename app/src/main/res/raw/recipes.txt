@@ -1,0 +1,11 @@
+id	name	description	fruits_score	vegetables_score	proteins_score	sugars_score	carbs_score	fats_score	is_snack	is_vegan
+0	Pizza	Everyone loves pizza! Fluffy crust topped with the sauce of your choice, and covered with some yummy melted cheese. Decorate it with the toppings of your choosing, and don't skip some vegetables.	1	2	5	2	7	7	FALSE	TRUE
+1	Burger	An old time classic. Steaming hot meat encased in two bread buns with a bunch of tasty ingredients in the mix. Chicken or beef?	1	2	7	2	5	7	FALSE	FALSE
+2	Crepe	What's not to like from a stuffed French delight? Fried batter wrapped around a handful of ingredients. Try it savory with some fries, cheese and meat 'n veggies of your choice	2	2	4	3	6	6	FALSE	TRUE
+3	Mousakas	A signature dish from Greece. Try this layered dish, with a fun mix of fried vegetables, minced meat and bechamel sauce.	1	4	4	2	5	4	FALSE	FALSE
+4	Fruit Salad	Something refreshing is always fun. Mix and match all your favourite fruits in a bowl for a wild combination of flavors.	10	1	1	4	1	1	TRUE	TRUE
+5	Greek Salad	Optimally served besides the roaring waves of a sunny beach. A mixture of freshly cut tomatoes, cucumber, onions and olives, all bound together with some traditional fetta cheese.	1	10	2	2	1	2	TRUE	TRUE
+6	Steak	Just a good ol' chunk of meat, best served medium rare, sided with a handful of crispy fries.	1	3	10	1	3	5	FALSE	FALSE
+7	Profiterol	Also known as Cream Puffs, these little treats are composed of dough and a creme filling. Perfect to serve to guests or keep for a midnight snack.	1	1	3	10	4	6	TRUE	FALSE
+8	Bananabread	Our author's favourite desert. This sweet treat is the perfect unison of sweet dough and baked bananas, leaving a sweet taste to the mouth. Add some chocolate chips if you are feeling adventurous.	4	1	2	5	10	3	TRUE	TRUE
+9	Bacon Omelette	The perfect fit for a quick, easy to make dinner. A mixture of eggs, cheese, olive oil and of course.. Bacon! All cooked into solid form on a frying pan.	1	1	5	1	4	10	FALSE	FALSE
