@@ -8,5 +8,7 @@
     <string name="option_snack_meal">I want a full course!</string>
     <string name="option_vegan"> Should I suggest only vegan-friendly options?</string>
     <string name="option_generate">Let\'s eat!</string>
+    <string name="option_retry_food">Try again</string>
+    <string name="option_confirm_food">Let\'s eat!</string>
 
 </resources>

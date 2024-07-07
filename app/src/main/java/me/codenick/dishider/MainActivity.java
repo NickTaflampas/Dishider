@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
         carbBar = findViewById(R.id.carbScore);
         fatBar = findViewById(R.id.fatScore);
 
-        createOrLoadStatistics();
+        Bundle extras = getIntent().getExtras();
+        createOrLoadStatistics(extras);
         updateProgressBars();
 
         findViewById(R.id.foodButton).setOnClickListener(new View.OnClickListener() {
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void createOrLoadStatistics()
+    private void createOrLoadStatistics(Bundle extras)
     {
         try {
             if (userStatistics.exists()) {
@@ -106,6 +107,17 @@ public class MainActivity extends AppCompatActivity {
                 sugarScore = Float.parseFloat(scores[3]);
                 carbScore = Float.parseFloat(scores[4]);
                 fatScore = Float.parseFloat(scores[5]);
+
+                if (extras != null && extras.containsKey("acceptedFood"))
+                {
+                    fruitScore += (extras.getInt("fruitScoreEaten")-fruitScore)*0.5f;
+                    vegetableScore += (extras.getInt("vegetableScoreEaten")-vegetableScore)*0.5f;
+                    proteinScore += (extras.getInt("proteinScoreEaten")-proteinScore)*0.5f;
+                    sugarScore += (extras.getInt("sugarScoreEaten")-sugarScore)*0.5f;
+                    carbScore += (extras.getInt("carbScoreEaten")-carbScore)*0.5f;
+                    fatScore += (extras.getInt("fatScoreEaten")-fatScore)*0.5f;
+
+                }
 
             } else {
                 userStatistics.createNewFile();

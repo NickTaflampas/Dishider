@@ -1,6 +1,8 @@
 package me.codenick.dishider;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,13 +61,42 @@ public class FoodResult extends AppCompatActivity {
         shownTitle.setText(shownEntry.getName());
         shownDescription.setText(shownEntry.getDescription());
 
+        findViewById(R.id.retry_food_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Random r = new Random();
+                shownEntry = rankedFoodEntries.get(r.nextInt(rankedFoodEntries.size()));
+                shownTitle.setText(shownEntry.getName());
+                shownDescription.setText(shownEntry.getDescription());
+            }
+        });
+
+        if (rankedFoodEntries.size() <= 1) { findViewById(R.id.retry_food_button).setAlpha(0.5f); }
+
+        findViewById(R.id.confirm_food_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("acceptedFood", true);
+
+                intent.putExtra("fruitScoreEaten", shownEntry.getFruitScore());
+                intent.putExtra("vegetableScoreEaten", shownEntry.getVegetableScore());
+                intent.putExtra("proteinScoreEaten", shownEntry.getProteinScore());
+                intent.putExtra("sugarScoreEaten", shownEntry.getSugarScore());
+                intent.putExtra("carbScoreEaten", shownEntry.getCarbScore());
+                intent.putExtra("fatScoreEaten", shownEntry.getFatScore());
+
+                startActivity(intent);
+            }
+        });
+
 
     }
 
     private void rankFoodEntries(Bundle extras)
     {
 
-        HashMap<FoodEntry,Integer> validEntries = new HashMap<FoodEntry,Integer>();
+        HashMap<FoodEntry,Float> validEntries = new HashMap<FoodEntry,Float>();
         int snackOption = extras.getInt("snackOption");
         boolean shouldBeVegan = extras.getBoolean("isVegan");
         boolean shouldUseNutrients = extras.getBoolean("useNutrients");
@@ -78,7 +109,7 @@ public class FoodResult extends AppCompatActivity {
 
         for (FoodEntry entry : foodEntries)
         {
-            int score = 0;
+            float score = 0;
             if (shouldBeVegan && !entry.isVegan()) continue;
             if ((snackOption == SnackOptions.SNACK_ONLY && !entry.isSnack()) ||
                     (snackOption == SnackOptions.MEAL_ONLY && entry.isSnack()))
@@ -93,16 +124,16 @@ public class FoodResult extends AppCompatActivity {
 
             for (int i = 0; i < entryScores.length; i++)
             {
-                score += Math.abs(5-((userScores[i]+entryScores[i])/2.0f));
+                score += Math.abs(5.0f-((userScores[i]+entryScores[i])/2.0f));
             }
 
             validEntries.put(entry,score);
         }
 
-        int bestScore = Collections.min(new ArrayList<Integer>(validEntries.values()));
+        float bestScore = Collections.min(new ArrayList<Float>(validEntries.values()));
 
         rankedFoodEntries = new ArrayList<FoodEntry>();
-        for (Map.Entry<FoodEntry, Integer> entry : validEntries.entrySet())
+        for (Map.Entry<FoodEntry, Float> entry : validEntries.entrySet())
         {
             if (entry.getValue() == bestScore)
             {
@@ -122,9 +153,11 @@ public class FoodResult extends AppCompatActivity {
         {
             boolean skippedFirstLine = false;
             String line;
-            while ((line = reader.readLine()) != null)
-            {
-                if (!skippedFirstLine) { skippedFirstLine = true; continue; }
+            while ((line = reader.readLine()) != null) {
+                if (!skippedFirstLine) {
+                    skippedFirstLine = true;
+                    continue;
+                }
 
                 String[] splitLine = line.split("\t");
                 FoodEntry entry = FoodEntry.builder(Integer.parseInt(splitLine[0])).withName(splitLine[1])
@@ -139,7 +172,6 @@ public class FoodResult extends AppCompatActivity {
                         .isVegan(splitLine[10].equals("TRUE")).build();
                 foodEntries.add(entry);
             }
-            Toast.makeText(this, "Total Entries: " + foodEntries.size(), Toast.LENGTH_SHORT).show();
         }
         catch (Exception e)
         {
