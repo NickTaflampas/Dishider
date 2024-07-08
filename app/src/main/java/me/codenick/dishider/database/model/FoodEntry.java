@@ -1,24 +1,47 @@
-package me.codenick.dishider;
+package me.codenick.dishider.database.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "FoodEntries")
 public class FoodEntry {
 
-    private int id;
-    private String name;
-    private String description;
+    @ColumnInfo(name="id")
+    @PrimaryKey(autoGenerate = true)
+    public int id;
+    @ColumnInfo(name="name")
+    public String name;
+    @ColumnInfo(name="description")
+    public String description;
 
-    private int fruitScore;
-    private int vegetableScore;
-    private int proteinScore;
-    private int sugarScore;
-    private int carbScore;
-    private int fatScore;
+    @ColumnInfo(name="fruit_score")
+    public int fruitScore;
+    @ColumnInfo(name="vegetable_score")
+    public int vegetableScore;
+    @ColumnInfo(name="protein_score")
+    public int proteinScore;
+    @ColumnInfo(name="sugar_score")
+    public int sugarScore;
+    @ColumnInfo(name="carb_score")
+    public int carbScore;
+    @ColumnInfo(name="fat_score")
+    public int fatScore;
 
-    private boolean isSnack;
-    private boolean isVegan;
+    @ColumnInfo(name="is_snack")
+    public boolean isSnack;
+    @ColumnInfo(name="is_vegan")
+    public boolean isVegan;
+
+
+    public FoodEntry()
+    {
+
+    }
 
     private FoodEntry(FoodEntryBuilder builder)
     {
-        this.id = builder.id;
+        //this.id = builder.id;
         this.name = builder.name;
         this.description = builder.description;
         fruitScore = builder.fruitScore;

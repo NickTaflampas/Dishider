@@ -15,13 +15,13 @@
         android:theme="@style/Theme.Dishider"
         tools:targetApi="31">
         <activity
-            android:name=".FoodResult"
+            android:name=".app.FoodResult"
             android:exported="false" />
         <activity
-            android:name=".FoodOptions"
+            android:name=".app.FoodOptions"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".app.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

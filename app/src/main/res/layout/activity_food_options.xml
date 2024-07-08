@@ -5,13 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FoodOptions">
+    tools:context=".app.FoodOptions">
 
     <CheckBox
         android:id="@+id/nutrient_checkbox"
         android:layout_width="316dp"
         android:layout_height="61dp"
         android:layout_marginTop="8dp"
+        android:checked="true"
         android:text="@string/option_nutrients"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

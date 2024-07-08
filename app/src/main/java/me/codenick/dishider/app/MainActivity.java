@@ -1,4 +1,4 @@
-package me.codenick.dishider;
+package me.codenick.dishider.app;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +14,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.util.Random;
 import java.util.Scanner;
+
+import me.codenick.dishider.R;
 
 public class MainActivity extends AppCompatActivity {
 
