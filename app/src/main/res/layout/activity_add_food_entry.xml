@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    tools:context=".app.AddFoodEntryActivity">
+
+    <EditText
+        android:id="@+id/descriptionInput"
+        android:layout_width="286dp"
+        android:layout_height="146dp"
+        android:layout_marginTop="32dp"
+        android:background="#AD8FE4"
+        android:gravity="top"
+        android:hint="Description..."
+        android:maxLength="200"
+        android:paddingStart="10dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/isSnackCheckbox"
+        app:layout_constraintTop_toBottomOf="@+id/isSnackCheckbox" />
+
+    <ImageButton
+        android:id="@+id/returnButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Return to main screen"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/return_image"
+        app:tint="#AD8FE4"
+        app:tintMode="multiply" />
+
+    <EditText
+        android:id="@+id/nameInput"
+        android:layout_width="287dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="58dp"
+        android:background="#AD8FE4"
+        android:gravity="center_vertical"
+        android:hint="Name.."
+        android:maxLength="30"
+        android:paddingStart="10dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="105dp"
+        android:layout_height="26dp"
+        android:gravity="bottom"
+        android:text="Name"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/nameInput"
+        app:layout_constraintStart_toStartOf="@+id/nameInput" />
+
+    <TextView
+        android:id="@+id/descriptionTitle"
+        android:layout_width="285dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="2dp"
+        android:gravity="start"
+        android:text="Description"
+        android:textAlignment="viewStart"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/descriptionInput"
+        app:layout_constraintStart_toStartOf="@+id/descriptionInput" />
+
+    <TextView
+        android:id="@+id/nutrientsTitle"
+        android:layout_width="285dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="24dp"
+        android:text="Nutrient Scores"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/nameInput"
+        app:layout_constraintTop_toBottomOf="@+id/nameInput" />
+
+    <EditText
+        android:id="@+id/carbScoreInput"
+        android:layout_width="52dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:hint="1-10"
+        android:inputType="numberSigned"
+        android:maxLength="2"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/sugarScoreInput"
+        app:layout_constraintTop_toBottomOf="@+id/sugarScoreInput" />
+
+    <EditText
+        android:id="@+id/fatScoreInput"
+        android:layout_width="52dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:hint="1-10"
+        android:inputType="numberSigned"
+        android:maxLength="2"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/carbScoreInput"
+        app:layout_constraintTop_toBottomOf="@+id/carbScoreInput" />
+
+    <CheckBox
+        android:id="@+id/isSnackCheckbox"
+        android:layout_width="112dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="16dp"
+        android:text="Is it a snack?"
+        app:layout_constraintStart_toStartOf="@+id/proteinScoreInput"
+        app:layout_constraintTop_toBottomOf="@+id/proteinScoreInput" />
+
+    <ImageView
+        android:id="@+id/fruitImage"
+        android:layout_width="61dp"
+        android:layout_height="56dp"
+        app:layout_constraintStart_toEndOf="@+id/fruitScoreInput"
+        app:layout_constraintTop_toTopOf="@+id/fruitScoreInput"
+        app:srcCompat="@drawable/fruit_image" />
+
+    <EditText
+        android:id="@+id/sugarScoreInput"
+        android:layout_width="52dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="52dp"
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:hint="1-10"
+        android:inputType="numberSigned"
+        android:maxLength="2"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/nameInput"
+        app:layout_constraintTop_toBottomOf="@+id/nameInput" />
+
+    <CheckBox
+        android:id="@+id/isVeganCheckbox"
+        android:layout_width="116dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:text="Is it vegan?"
+        app:layout_constraintStart_toStartOf="@+id/fatImage"
+        app:layout_constraintTop_toBottomOf="@+id/fatScoreInput" />
+
+    <EditText
+        android:id="@+id/proteinScoreInput"
+        android:layout_width="52dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:hint="1-10"
+        android:inputType="numberSigned"
+        android:maxLength="2"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/vegetableScoreInput"
+        app:layout_constraintTop_toBottomOf="@+id/vegetableScoreInput" />
+
+    <EditText
+        android:id="@+id/vegetableScoreInput"
+        android:layout_width="52dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:hint="1-10"
+        android:inputType="numberSigned"
+        android:maxLength="2"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/fruitScoreInput"
+        app:layout_constraintTop_toBottomOf="@+id/fruitScoreInput" />
+
+    <ImageView
+        android:id="@+id/carbImage"
+        android:layout_width="61dp"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toStartOf="@+id/carbScoreInput"
+        app:layout_constraintTop_toTopOf="@+id/carbScoreInput"
+        app:srcCompat="@drawable/carb_image" />
+
+    <ImageView
+        android:id="@+id/vegetableImage"
+        android:layout_width="61dp"
+        android:layout_height="56dp"
+        app:layout_constraintStart_toEndOf="@+id/vegetableScoreInput"
+        app:layout_constraintTop_toTopOf="@+id/vegetableScoreInput"
+        app:srcCompat="@drawable/vegetable_image" />
+
+    <ImageView
+        android:id="@+id/proteinImage"
+        android:layout_width="61dp"
+        android:layout_height="56dp"
+        app:layout_constraintStart_toEndOf="@+id/proteinScoreInput"
+        app:layout_constraintTop_toTopOf="@+id/proteinScoreInput"
+        app:srcCompat="@drawable/protein_image" />
+
+    <ImageView
+        android:id="@+id/sugarImage"
+        android:layout_width="61dp"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toStartOf="@+id/sugarScoreInput"
+        app:layout_constraintTop_toTopOf="@+id/sugarScoreInput"
+        app:srcCompat="@drawable/sugar_image" />
+
+    <ImageView
+        android:id="@+id/fatImage"
+        android:layout_width="61dp"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toStartOf="@+id/fatScoreInput"
+        app:layout_constraintTop_toTopOf="@+id/fatScoreInput"
+        app:srcCompat="@drawable/fat_image" />
+
+    <EditText
+        android:id="@+id/fruitScoreInput"
+        android:layout_width="52dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="52dp"
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:hint="1-10"
+        android:inputType="numberSigned"
+        android:maxLength="2"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/nameInput"
+        app:layout_constraintTop_toBottomOf="@+id/nameInput" />
+
+    <Button
+        android:id="@+id/confirmFoodAdditionButton"
+        android:layout_width="139dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="24dp"
+        android:text="Add Food"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionInput" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -100,9 +100,9 @@ public class FoodEntry {
         return isVegan;
     }
 
-    public static FoodEntryBuilder builder(int id)
+    public static FoodEntryBuilder builder()
     {
-        return new FoodEntryBuilder(id);
+        return new FoodEntryBuilder();
     }
 
     public static class FoodEntryBuilder
@@ -121,9 +121,8 @@ public class FoodEntry {
         protected boolean isSnack;
         protected boolean isVegan;
 
-        private FoodEntryBuilder(int id)
+        private FoodEntryBuilder()
         {
-            this.id = id;
         }
 
         public FoodEntryBuilder withName(String name)

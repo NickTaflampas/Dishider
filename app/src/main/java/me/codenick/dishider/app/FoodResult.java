@@ -137,7 +137,7 @@ public class FoodResult extends AppCompatActivity {
                 }
 
                 String[] splitLine = line.split("\t");
-                FoodEntry entry = FoodEntry.builder(Integer.parseInt(splitLine[0])).withName(splitLine[1])
+                FoodEntry entry = FoodEntry.builder().withName(splitLine[1])
                         .withDescription(splitLine[2])
                         .withFruitScore(Integer.parseInt(splitLine[3]))
                         .withVegetableScore(Integer.parseInt(splitLine[4]))

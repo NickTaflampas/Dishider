@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar carbBar;
     ProgressBar fatBar;
 
+    int purgeDatabaseClicks = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,21 +61,7 @@ public class MainActivity extends AppCompatActivity {
         createOrLoadStatistics(extras);
         updateProgressBars();
 
-        findViewById(R.id.foodButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), FoodOptions.class);
-                intent.putExtra("fruitScore", fruitScore);
-                intent.putExtra("vegetableScore", vegetableScore);
-                intent.putExtra("proteinScore", proteinScore);
-                intent.putExtra("sugarScore", sugarScore);
-                intent.putExtra("carbScore", carbScore);
-                intent.putExtra("fatScore", fatScore);
-
-
-                startActivity(intent);
-            }
-        });
+        registerListeners();
 
 
     }
@@ -152,6 +139,57 @@ public class MainActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Oops! on saving statistics." + e, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void registerListeners()
+    {
+        findViewById(R.id.foodButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), FoodOptions.class);
+                intent.putExtra("fruitScore", fruitScore);
+                intent.putExtra("vegetableScore", vegetableScore);
+                intent.putExtra("proteinScore", proteinScore);
+                intent.putExtra("sugarScore", sugarScore);
+                intent.putExtra("carbScore", carbScore);
+                intent.putExtra("fatScore", fatScore);
+
+
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.addDishButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AddFoodEntryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //TODO: Remove this when options are added.
+        findViewById(R.id.addDishButton).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if (purgeDatabaseClicks == 3)
+                {
+                    purgeDatabaseClicks = 0;
+                    deleteDatabase("DishiderDB");
+                    Toast.makeText(getApplicationContext(),
+                            "Database purged.",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    purgeDatabaseClicks++;
+                    Toast.makeText(getApplicationContext(),
+                            "Purging protocol in " + (3-purgeDatabaseClicks) + " long clicks.",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+                return true;
+            }
+        });
     }
 
 }
