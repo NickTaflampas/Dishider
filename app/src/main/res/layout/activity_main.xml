@@ -83,6 +83,7 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="280dp"
             android:layout_height="70dp"
+            android:indeterminateOnly="false"
             android:max="100"
             android:progress="3"
             android:progressTint="#DE2154"
@@ -149,6 +150,8 @@
         android:scaleX="1.75"
         android:scaleY="1.75"
         android:text="@string/nutrients_title"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -165,5 +168,91 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scores"
         app:layout_constraintVertical_bias="1.0" />
+
+    <LinearLayout
+        android:layout_width="283dp"
+        android:layout_height="420dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/scores"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/scoreImages"
+        app:layout_constraintTop_toTopOf="@+id/scores">
+
+        <EditText
+            android:id="@+id/fruitScoreText"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="22dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Fruits"
+            android:background="@android:color/transparent"
+            android:textColor="#A00000"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/vegetableScoreText"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="22dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Vegetables"
+            android:background="@android:color/transparent"
+            android:textColor="#1A8C00"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/proteinScoreText"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="22dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Proteins"
+            android:background="@android:color/transparent"
+            android:textColor="#422D2D"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/sugarScoreText"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="22dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Sugars"
+            android:background="@android:color/transparent"
+            android:textColor="#00BAAA"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/carbScoreText"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="22dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Carbohydrates"
+            android:background="@android:color/transparent"
+            android:textColor="#922E00"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/fatScoreText"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="22dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Fats"
+            android:background="@android:color/transparent"
+            android:textColor="#424242"
+            android:textStyle="italic" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

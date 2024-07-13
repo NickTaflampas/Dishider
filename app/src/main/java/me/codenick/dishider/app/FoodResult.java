@@ -1,5 +1,6 @@
 package me.codenick.dishider.app;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -169,7 +170,6 @@ public class FoodResult extends AppCompatActivity {
             }
         });
 
-        FoodResult temp = this;
         findViewById(R.id.confirm_food_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -186,6 +186,13 @@ public class FoodResult extends AppCompatActivity {
                 startActivity(intent);
 
 
+            }
+        });
+
+        findViewById(R.id.returnButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

@@ -11,7 +11,7 @@
         android:id="@+id/nutrient_checkbox"
         android:layout_width="316dp"
         android:layout_height="61dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="132dp"
         android:checked="true"
         android:text="@string/option_nutrients"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,17 +22,19 @@
         android:id="@+id/vegan_checkbox"
         android:layout_width="316dp"
         android:layout_height="61dp"
-        android:layout_marginTop="252dp"
+        android:layout_marginTop="152dp"
         android:text="@string/option_vegan"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/nutrient_checkbox" />
 
     <Button
         android:id="@+id/getFoodButton"
         android:layout_width="136dp"
         android:layout_height="65dp"
         android:text="@string/option_generate"
+        android:textColorLink="#673AB7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -69,5 +71,20 @@
             android:layout_height="wrap_content"
             android:text="@string/option_snack_meal" />
     </RadioGroup>
+
+    <ImageButton
+        android:id="@+id/returnButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Return to main screen"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/return_image"
+        app:tint="#AD8FE4"
+        app:tintMode="multiply" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -129,10 +129,8 @@ public class MainActivity extends AppCompatActivity {
                 sugarScore = 5;
                 carbScore = 5;
                 fatScore = 5;
-
-                saveStatistics();
-
             }
+            saveStatistics();
         }
         catch (Exception e)
         {

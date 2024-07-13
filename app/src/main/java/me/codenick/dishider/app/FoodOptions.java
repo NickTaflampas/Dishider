@@ -74,6 +74,13 @@ public class FoodOptions extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.returnButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
 
     }
 }
