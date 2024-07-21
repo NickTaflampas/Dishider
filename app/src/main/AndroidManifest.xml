@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Dishider"
         tools:targetApi="31">
         <activity
+            android:name=".app.Options"
+            android:exported="false" />
+        <activity
             android:name=".app.AddFoodEntryActivity"
             android:exported="false" />
         <activity

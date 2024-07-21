@@ -32,6 +32,7 @@ public class FoodResult extends AppCompatActivity {
     ArrayList<RankedFoodEntry> rankedFoodEntries;
 
     FoodEntry shownEntry = null;
+    int shownEntryIndex = -1;
     TextView shownTitle;
     TextView shownDescription;
 
@@ -163,8 +164,22 @@ public class FoodResult extends AppCompatActivity {
         findViewById(R.id.retry_food_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (rankedFoodEntries.size() <= 1) return;
+
                 Random r = new Random();
-                shownEntry = rankedFoodEntries.get(r.nextInt(rankedFoodEntries.size()));
+                int randomIndex = -1;
+                while (true)
+                {
+                    randomIndex = r.nextInt(rankedFoodEntries.size());
+                    if (randomIndex != shownEntryIndex)
+                    {
+                        shownEntryIndex = randomIndex;
+                        break;
+                    }
+                }
+
+                shownEntry = rankedFoodEntries.get(shownEntryIndex);
                 shownTitle.setText(shownEntry.getName());
                 shownDescription.setText(shownEntry.getDescription());
             }

@@ -36,4 +36,7 @@ public interface FoodEntryDAO {
                     "as score FROM FoodEntries WHERE is_vegan = :wantsVegan ORDER BY score LIMIT 50")
     public RankedFoodEntry[] getRankedEntries(float fruitScore, float vegetableScore, float proteinScore,
                                               float sugarScore, float carbScore, float fatScore, boolean wantsVegan);
+
+    @Query("SELECT * FROM FoodEntries WHERE id > 10")
+    public FoodEntry[] getUserAddedEntries();
 }

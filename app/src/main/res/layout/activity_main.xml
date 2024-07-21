@@ -143,8 +143,8 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="187dp"
-        android:layout_height="53dp"
+        android:layout_width="195dp"
+        android:layout_height="52dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:scaleX="1.75"
@@ -186,10 +186,12 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="22dp"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Fruits"
             android:background="@android:color/transparent"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none"
+            android:text="Fruits"
             android:textColor="#A00000"
             android:textStyle="italic" />
 
@@ -198,10 +200,12 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="22dp"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Vegetables"
             android:background="@android:color/transparent"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none"
+            android:text="Vegetables"
             android:textColor="#1A8C00"
             android:textStyle="italic" />
 
@@ -210,10 +214,12 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="22dp"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Proteins"
             android:background="@android:color/transparent"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none"
+            android:text="Proteins"
             android:textColor="#422D2D"
             android:textStyle="italic" />
 
@@ -222,10 +228,12 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="22dp"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Sugars"
             android:background="@android:color/transparent"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none"
+            android:text="Sugars"
             android:textColor="#00BAAA"
             android:textStyle="italic" />
 
@@ -234,10 +242,12 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="22dp"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Carbohydrates"
             android:background="@android:color/transparent"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none"
+            android:text="Carbohydrates"
             android:textColor="#922E00"
             android:textStyle="italic" />
 
@@ -246,10 +256,12 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="22dp"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Fats"
             android:background="@android:color/transparent"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none"
+            android:text="Fats"
             android:textColor="#424242"
             android:textStyle="italic" />
 
@@ -269,5 +281,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/foodButton"
         app:layout_constraintVertical_bias="0.433" />
+
+    <ImageButton
+        android:id="@+id/optionsButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="Options"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cog"
+        app:tint="#AD8FE4"
+        app:tintMode="multiply" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

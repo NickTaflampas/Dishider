@@ -167,27 +167,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //TODO: Remove this when options are added.
-        findViewById(R.id.addDishButton).setOnLongClickListener(new View.OnLongClickListener() {
+        findViewById(R.id.optionsButton).setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
-                if (purgeDatabaseClicks == 3)
-                {
-                    purgeDatabaseClicks = 0;
-                    deleteDatabase("DishiderDB");
-                    Toast.makeText(getApplicationContext(),
-                            "Database purged.",
-                            Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    purgeDatabaseClicks++;
-                    Toast.makeText(getApplicationContext(),
-                            "Purging protocol in " + (3-purgeDatabaseClicks) + " long clicks.",
-                            Toast.LENGTH_SHORT).show();
-                }
-
-                return true;
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Options.class);
+                startActivity(intent);
             }
         });
     }
