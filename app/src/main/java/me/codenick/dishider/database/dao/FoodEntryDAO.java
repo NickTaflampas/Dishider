@@ -33,7 +33,8 @@ public interface FoodEntryDAO {
     @Query("SELECT *, abs(5-(:fruitScore+fruit_score)/2)+abs(5-(:vegetableScore+vegetable_score)/2)" +
                     "+abs(5-(:proteinScore+protein_score)/2)+abs(5-(:sugarScore+sugar_score)/2)" +
                     "+abs(5-(:carbScore+carb_score)/2)+abs(5-(:fatScore+fat_score)/2) " +
-                    "as score FROM FoodEntries WHERE is_vegan = :wantsVegan ORDER BY score LIMIT 50")
+                    "as score FROM FoodEntries WHERE (1 = (CASE WHEN :wantsVegan = 1 THEN is_vegan ELSE 1 END)) " +
+                    "ORDER BY score LIMIT 50")
     public RankedFoodEntry[] getRankedEntries(float fruitScore, float vegetableScore, float proteinScore,
                                               float sugarScore, float carbScore, float fatScore, boolean wantsVegan);
 

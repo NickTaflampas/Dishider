@@ -53,6 +53,7 @@ public class FoodOptions extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), FoodResult.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 intent.putExtra("useNutrients", useNutrientScores.isChecked());
                 intent.putExtra("isVegan", isVegan.isChecked());
 

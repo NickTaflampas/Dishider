@@ -4,6 +4,7 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,11 +15,16 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import me.codenick.dishider.database.AppDatabase;
 import me.codenick.dishider.database.model.FoodEntry;
@@ -29,12 +35,16 @@ import me.codenick.dishider.utils.SnackOptions;
 
 public class FoodResult extends AppCompatActivity {
 
+    File foodHistoryFile;
+
+    ArrayList<Integer> consumedFoodHistory = new ArrayList<Integer>();
     ArrayList<RankedFoodEntry> rankedFoodEntries;
 
     FoodEntry shownEntry = null;
     int shownEntryIndex = -1;
     TextView shownTitle;
     TextView shownDescription;
+    boolean isSortedByNutrients = false;
 
     AppDatabase database;
 
@@ -48,6 +58,9 @@ public class FoodResult extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        foodHistoryFile = new File(getFilesDir(), "/history.txt");
+        loadFoodHistory();
 
         database = AppDatabase.getInstance(getApplicationContext());
         prepopulateDatabase();
@@ -70,6 +83,45 @@ public class FoodResult extends AppCompatActivity {
 
     }
 
+    private void loadFoodHistory()
+    {
+        try
+        {
+            if (!foodHistoryFile.exists())
+            {
+                foodHistoryFile.createNewFile();
+                return;
+            }
+
+            Scanner reader = new Scanner(foodHistoryFile);
+            String[] ids = reader.nextLine().split(";");
+            for (String id : ids)
+            {
+                consumedFoodHistory.add(Integer.parseInt(id));
+            }
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(this, "Oops! on retrieving history of food entries." + e, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void saveFoodHistory()
+    {
+        try
+        {
+            FileWriter writer = new FileWriter(foodHistoryFile);
+            String res = consumedFoodHistory.stream().map(String::valueOf)
+                    .collect(Collectors.joining(";"));
+            writer.write( res+"\n");
+            writer.close();
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(this, "Oops! on saving history." + e, Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void rankFoodEntries(Bundle extras)
     {
         if (extras == null) return;
@@ -81,17 +133,28 @@ public class FoodResult extends AppCompatActivity {
                 extras.getBoolean("isVegan"));
         int snackOption = extras.getInt("snackOption");
 
+        //If nutrient scores are not used, don't sort them.
         if (!extras.getBoolean("useNutrients"))
         {
             rankedFoodEntries = new ArrayList<RankedFoodEntry>(Arrays.asList(rankedEntries));
             return;
         }
+        isSortedByNutrients = true;
+        Button b = findViewById(R.id.retry_food_button);
+        b.setText(getString(R.string.option_retry_food_without_nutrients));
 
-        rankedFoodEntries = new ArrayList<RankedFoodEntry>();
-        float topScore = -1;
+        //Add to the score of recently eaten entries.
         for (RankedFoodEntry entry : rankedEntries)
         {
-            if (topScore != -1 && entry.score != topScore) break;
+            int count = Collections.frequency(consumedFoodHistory, entry.getId());
+            entry.setScore(entry.getScore() + (float)Math.exp(count/5.0f));
+        }
+        Arrays.sort(rankedEntries);
+
+        //Filter entries that do not match SnackOption choice.
+        rankedFoodEntries = new ArrayList<RankedFoodEntry>();
+        for (RankedFoodEntry entry : rankedEntries)
+        {
             switch (snackOption)
             {
                 case SnackOptions.ALL:
@@ -103,13 +166,10 @@ public class FoodResult extends AppCompatActivity {
                     if (entry.isSnack()) continue;
                     break;
             }
-
-            if (topScore == -1) topScore = entry.score;
             rankedFoodEntries.add(entry);
         }
 
     }
-
 
     private void prepopulateDatabase()
     {
@@ -121,6 +181,7 @@ public class FoodResult extends AppCompatActivity {
 
     }
 
+    //Loads hardcoded food entries.
     private ArrayList<FoodEntry> loadFoodEntries()
     {
         ArrayList<FoodEntry> foodEntries = new ArrayList<FoodEntry>();
@@ -167,15 +228,24 @@ public class FoodResult extends AppCompatActivity {
 
                 if (rankedFoodEntries.size() <= 1) return;
 
-                Random r = new Random();
-                int randomIndex = -1;
-                while (true)
+                //If sorted by nutrient score, just pick the next best.
+                if (isSortedByNutrients)
                 {
-                    randomIndex = r.nextInt(rankedFoodEntries.size());
-                    if (randomIndex != shownEntryIndex)
+                    shownEntryIndex++;
+                    if (shownEntryIndex >= rankedFoodEntries.size()) shownEntryIndex = 0;
+                }
+                else //Otherwise, random select.
+                {
+                    Random r = new Random();
+                    int randomIndex = -1;
+                    while (true)
                     {
-                        shownEntryIndex = randomIndex;
-                        break;
+                        randomIndex = r.nextInt(rankedFoodEntries.size());
+                        if (randomIndex != shownEntryIndex)
+                        {
+                            shownEntryIndex = randomIndex;
+                            break;
+                        }
                     }
                 }
 
@@ -188,7 +258,15 @@ public class FoodResult extends AppCompatActivity {
         findViewById(R.id.confirm_food_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //Add consumed entry to our history
+                consumedFoodHistory.add(shownEntry.getId());
+                if (consumedFoodHistory.size() > 30) consumedFoodHistory.remove(0);
+                saveFoodHistory();
+
+                //Transfer nutrients for user nutrient recalculation
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.putExtra("acceptedFood", true);
 
                 intent.putExtra("fruitScoreEaten", shownEntry.getFruitScore());
